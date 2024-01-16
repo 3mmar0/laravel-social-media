@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->longText('body')->nullable();
             $table->foreignId('user_id')->constrained("users")->cascadeOnDelete();
-            $table->timestamp('deleted_at')->nullable();
+            $table->foreignId('group_id')->nullable()->constrained("groups")->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained("users")->nullOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
