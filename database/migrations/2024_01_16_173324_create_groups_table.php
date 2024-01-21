@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('cover_path')->nullable();
+            $table->string('thumbnail_path')->nullable();
             $table->text('about')->nullable();
+            $table->boolean('auto_approval')->default(true);
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('deleted_by')->nullable()->constrained("users")->nullOnDelete();
             $table->softDeletes();
